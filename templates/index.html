@@ -1,143 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wagesh Sharma - Pneumonia Prediction System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic Engine | Wagesh Sharma</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Playfair+Display:opsz,wght@5..1200,400;5..1200,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <header class="glass-panel main-header">
-      <div class="header-content">
-        <div class="logo-group">
-          <div class="logo">WS</div>
-          <div class="header-titles">
-            <h1>Wagesh Sharma</h1>
-            <p>CS Student @ DTU - Web Architect</p>
-          </div>
-        </div>
-        <nav aria-label="Main Navigation">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#predictor">Predictor</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+  <main class="layout-grid">
+    <header class="masthead">
+      <h1 class="headline-primary">PNEUMONIA<br>ANALYSIS</h1>
+      <div class="divider-ultra"></div>
     </header>
 
-    <div class="main-grid">
-      <main>
-        <section id="about" class="glass-panel">
-          <h2><i class="fa-solid fa-user-astronaut"></i> About the System</h2>
-          <div class="text-content">
-            <p>This <strong>Pneumonia Prediction System</strong> leverages a Gradient Boosting Classifier to analyze clinical biomarkers and provide real-time risk assessments.</p>
-            <p>Built with <strong>Scikit-learn, Flask, and Pandas</strong>, it demonstrates the integration of machine learning into practical healthcare tools.</p>
+    <section class="interaction-zone">
+      <form id="predictionForm" class="upload-form" style="max-width: 100%;">
+        <div class="input-grid">
+          <div class="feature-item">
+            <label class="mono-label">FEVER</label>
+            <select name="fever" class="minimal-select">
+              <option value="No">NO</option>
+              <option value="Yes">YES</option>
+            </select>
           </div>
-        </section>
-
-        <section id="predictor" class="glass-panel">
-          <h2><i class="fa-solid fa-stethoscope"></i> Risk Predictor</h2>
-          <form id="predictionForm">
-            <div class="form-grid">
-              <div class="form-group">
-                <label>Fever</label>
-                <select name="fever">
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Tachycardia</label>
-                <select name="tachycardia">
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Crackles (Lung Sound)</label>
-                <select name="crackles">
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>X-Ray Result</label>
-                <select name="xray_result">
-                  <option value="Normal">Normal</option>
-                  <option value="Opacity">Opacity</option>
-                  <option value="Infiltrate">Infiltrate</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Oxygen Saturation (SpO₂ %)</label>
-                <input type="number" name="oxygen_saturation" value="98" min="50" max="100">
-              </div>
-              <div class="form-group">
-                <label>WBC Count (cells/mcL)</label>
-                <input type="number" name="wbc_count" value="8000" min="1000" max="50000">
-              </div>
-            </div>
-            <button type="submit" class="btn-predict">Analyze Risk Profile</button>
-          </form>
-          <div id="result"></div>
-        </section>
-      </main>
-
-      <aside>
-        <div class="profile-card glass-panel">
-          <div class="profile-img-container">
-            <img src="https://via.placeholder.com/150/6366f1/ffffff?text=WS" alt="Wagesh Sharma">
+          <div class="feature-item">
+            <label class="mono-label">TACHYCARDIA</label>
+            <select name="tachycardia" class="minimal-select">
+              <option value="No">NO</option>
+              <option value="Yes">YES</option>
+            </select>
           </div>
-          <h3>Wagesh Sharma</h3>
-          <p class="highlight">BTech CS @ DTU</p>
-          <p class="location"><i class="fa-solid fa-location-dot"></i> New Delhi, India</p>
+          <div class="feature-item">
+            <label class="mono-label">CRACKLES (LUNG SOUND)</label>
+            <select name="crackles" class="minimal-select">
+              <option value="No">NO</option>
+              <option value="Yes">YES</option>
+            </select>
+          </div>
+          <div class="feature-item">
+            <label class="mono-label">X-RAY RESULT</label>
+            <select name="xray_result" class="minimal-select">
+              <option value="Consolidation">CONSOLIDATION</option>
+              <option value="Effusion">EFFUSION</option>
+              <option value="Infiltrate">INFILTRATE</option>
+              <option value="Normal">NORMAL</option>
+              <option value="Opacity">OPACITY</option>
+            </select>
+          </div>
+          <div class="feature-item">
+            <label class="mono-label">OXYGEN SATURATION (SpO₂ %)</label>
+            <input type="number" name="oxygen_saturation" value="98" min="50" max="100" class="minimal-input">
+          </div>
+          <div class="feature-item">
+            <label class="mono-label">WBC COUNT (cells/mcL)</label>
+            <input type="number" name="wbc_count" value="8000" min="1000" max="50000" class="minimal-input">
+          </div>
         </div>
+        <button type="submit" class="btn-primary" style="width: 100%; max-width: 32rem;">EXECUTE ANALYSIS</button>
+      </form>
+    </section>
 
-        <section id="contact" class="glass-panel">
-          <h2>Connect</h2>
-          <div class="contact-links">
-            <a href="mailto:wageshsharma20@gmail.com" class="contact-item">
-              <div class="icon-box"><i class="fa-regular fa-envelope"></i></div>
-              <div class="contact-text">
-                <h4>Email</h4>
-                <span>wageshsharma20@gmail.com</span>
-              </div>
-            </a>
-            <a href="https://github.com/wageshsharma20" target="_blank" class="contact-item">
-              <div class="icon-box"><i class="fa-brands fa-github"></i></div>
-              <div class="contact-text">
-                <h4>GitHub</h4>
-                <span>wageshsharma20</span>
-              </div>
-            </a>
-          </div>
-        </section>
-      </aside>
-    </div>
-
-    <footer>
-      <p>&copy; <span id="year"></span> Wagesh Sharma. Built for clinical diagnostic support.</p>
-    </footer>
-  </div>
+    <section id="result-container" class="results-zone">
+      </section>
+  </main>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
     document.getElementById('predictionForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
-      const resultDiv = document.getElementById('result');
+      const resultContainer = document.getElementById('result-container');
       
-      resultDiv.style.display = 'block';
-      resultDiv.className = '';
-      resultDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+      resultContainer.style.display = 'block';
+      resultContainer.innerHTML = '<p class="mono-label">PROCESSING TELEMETRY...</p>';
 
       try {
         const response = await fetch('/predict', {
@@ -149,17 +87,26 @@
         const result = await response.json();
         
         if (result.success) {
-          const isHigh = result.prediction.includes('High Risk');
-          resultDiv.className = isHigh ? 'result-high' : 'result-low';
-          resultDiv.innerHTML = `
-            <h3>${result.prediction}</h3>
-            <p>Calculated Probability: ${result.probability}</p>
+          resultContainer.innerHTML = `
+            <div class="result-card inverted">
+              <h2 class="headline-secondary">DIAGNOSIS</h2>
+              <div class="feature-grid">
+                <div class="feature-item">
+                  <span class="mono-label">CLASSIFICATION</span>
+                  <span class="serif-value">${result.prediction.toUpperCase()}</span>
+                </div>
+                <div class="feature-item">
+                  <span class="mono-label">PROBABILITY</span>
+                  <span class="serif-value">${result.probability}</span>
+                </div>
+              </div>
+            </div>
           `;
         } else {
-          resultDiv.innerHTML = `<p style="color: #f87171;">Error: ${result.error}</p>`;
+          resultContainer.innerHTML = `<p class="mono-label">ERROR: ${result.error}</p>`;
         }
       } catch (err) {
-        resultDiv.innerHTML = `<p style="color: #f87171;">Failed to connect to the server.</p>`;
+        resultContainer.innerHTML = `<p class="mono-label">SYSTEM FAILURE. UNABLE TO CONNECT.</p>`;
       }
     });
   </script>
