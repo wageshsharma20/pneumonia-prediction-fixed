@@ -10,7 +10,7 @@ def generate_synthetic_data(n_samples=200):
         'crackles': np.random.choice(['Yes', 'No'], n_samples),
         'oxygen_saturation': np.random.uniform(85, 100, n_samples),
         'wbc_count': np.random.uniform(4000, 20000, n_samples),
-        'chest_xray_result': np.random.choice(['Normal', 'Opacity', 'Infiltrate'], n_samples),
+        'chest_xray_result': np.random.choice(['Normal', 'Opacity', 'Infiltrate', 'Consolidation', 'Effusion'], n_samples),
     }
     
     df = pd.DataFrame(data)
